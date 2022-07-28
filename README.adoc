@@ -8,10 +8,10 @@ toc::[]
 
 == Product versions
 
-* Fuse: 7.11 https://access.redhat.com/documentation/en-us/red_hat_fuse/7.11[DOC]
+* Fuse: 7.11 https://access.redhat.com/documentation/en-us/red_hat_fuse/7.11[ - Documentation]
 * Spring Boot: 2
 * Java: 11
-* AMQ Streams: 1.8 https://access.redhat.com/documentation/en-us/red_hat_amq/2021.q3[DOC]
+* AMQ Streams: 1.8 https://access.redhat.com/documentation/en-us/red_hat_amq/2021.q3[ - Documentation]
 * Openshift Dev Spaces: latest
 * [optional] Camel K: 1.4
 
