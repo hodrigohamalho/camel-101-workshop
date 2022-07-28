@@ -8,11 +8,11 @@ toc::[]
 
 == Product versions
 
-* Fuse: 2.10
+* Fuse: 7.11 https://access.redhat.com/documentation/en-us/red_hat_fuse/7.11[DOC]
 * Spring Boot: 2
 * Java: 11
-* AMQ Broker: 7.x
-* Codeready Workspaces: latest
+* AMQ Streams: 1.8 https://access.redhat.com/documentation/en-us/red_hat_amq/2021.q3[DOC]
+* Openshift Dev Spaces: latest
 * [optional] Camel K: 1.4
 
 == Requirements
@@ -30,17 +30,16 @@ Take the above resource consumption as a base to calculate the amount of resourc
 
 [NOTE]
 ====
-This workshop is specifically tested with OCP 4.9. Older versions have API incompatibilities that will break the automation and newer versions still not possess some of the operators used in this workshop.
+This workshop is specifically tested with OCP 4.10. Older versions have API incompatibilities that will break the automation and newer versions still not possess some of the operators used in this workshop.
 ====
 
 === Resource Consumption per User
 
 image::./images/resources.png[Resource Consumption]
 
-=== CodeReady Workspaces
+=== Openshift Dev Spaces (old CodeReady Workspaces)
 
 You just need an updated browser, preferably Chrome or Firefox :)
-
 
 == Using the Ansible playbook
 
