@@ -1,10 +1,10 @@
 apiVersion: operators.coreos.com/v1
 kind: OperatorGroup
 metadata:
-  generateName: codeready-
   annotations:
-    olm.providedAPIs: CheCluster.v1.org.eclipse.che
-  name: codeready-operator-group
-spec:
-  targetNamespaces:
-    - '{{ workshop_che_namespace }}'
+    include.release.openshift.io/ibm-cloud-managed: 'true'
+    include.release.openshift.io/self-managed-high-availability: 'true'
+    olm.providedAPIs: >-
+      CheCluster.v1.org.eclipse.che,DevWorkspace.v1alpha1.workspace.devfile.io,DevWorkspace.v1alpha2.workspace.devfile.io,DevWorkspaceOperatorConfig.v1alpha1.controller.devfile.io,DevWorkspaceRouting.v1alpha1.controller.devfile.io,DevWorkspaceTemplate.v1alpha1.workspace.devfile.io,DevWorkspaceTemplate.v1alpha2.workspace.devfile.io
+  name: devspace
+  namespace: openshift-operators

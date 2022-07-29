@@ -1,14 +1,19 @@
 {
-  "apiVersion": "1.0.0",
+  "schemaVersion": "2.1.0",
   "metadata": {
     "name": "fuse-workshop"
   },
   "projects": [
     {
       "name": "fuse-workshop",
-      "source": {
-        "type": "git",
-        "location": "https://github.com/GuilhermeCamposo/fuse-workshop.git"
+      "git": {
+        "remotes": {
+          "origin": "https://github.com/hodrigohamalho/fuse-workshop.git"
+        },
+        "checkoutFrom": {
+          "revision": "main",
+          "remote": "origin"
+        }
       }
     }
   ],

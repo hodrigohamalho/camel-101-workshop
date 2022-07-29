@@ -24,7 +24,7 @@
     headers:
       Content-Type: application/json
       Authorization: "Bearer {{ user_token.json.access_token }}"
-    body: "{{ lookup('template', 'fuse-devfile.json.j2') }}"
+    body: "{{ lookup('template', 'camel-devfile.yaml.j2') }}"
     body_format: json
     status_code: 201,409
   register: _result
@@ -42,7 +42,7 @@
       Content-Type: application/json
       Authorization: "Bearer {{ user_token.json.access_token }}"
     body: "{{ lookup('template', 'camel-k-devfile.json.j2') }}"
-    body_format: json
+    body_format: raw
     status_code: 201,409
   register: _result
   until: _result.status == 201 or _result.status == 409

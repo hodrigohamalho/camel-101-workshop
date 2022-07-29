@@ -1,0 +1,77 @@
+schemaVersion: 2.1.0
+metadata:
+  name: camel-workshop
+  attributes:
+    type: workspace
+projects:
+  - name: camel-workshop
+    git:
+      remotes:
+        origin: https://github.com/hodrigohamalho/camel-workshop.git
+      checkoutFrom:
+        revision: main
+components:
+  - name: tools
+    container:
+      image: quay.io/gcamposo/java-maven-basic:0.0.1
+      mountSources: true
+      memoryLimit: 4294Mi
+      env:
+        - name: JAVA_OPTS
+          value: >-
+            -XX:MaxRAMPercentage=50.0 -XX:+UseParallelGC -XX:MinHeapFreeRatio=10
+            -XX:MaxHeapFreeRatio=20 -XX:GCTimeRatio=4
+            -XX:AdaptiveSizePolicyWeight=90 -Dsun.zip.disableMemoryMapping=true
+            -Xms20m -Djava.security.egd=file:/dev/./urandom -Duser.home=/home/user
+        - name: MAVEN_OPTS
+          value: $(JAVA_OPTS)
+      endpoints:
+        - name: tcp-8080
+          targetPort: 8080
+          exposure: public
+        - name: debug
+          targetPort: 5005
+          exposure: false
+      volumeMounts:
+        - name: m2
+          path: /home/user/.m2
+  - name: m2
+    volume:
+      size: 2G
+commands:
+  - id: maven build 
+    exec:
+      component: tools
+      commandLine: mvn -Duser.home=${HOME} -DskipTests clean install
+      workingDir: '${PROJECTS_ROOT}/camel-workshop'
+      env:
+        - name: MAVEN_OPTS
+          value: "-Xmx200m"
+  - id: log in openshift
+    exec:
+      component: tools
+      commandLine: 'oc login -p openshift -u {{ user }} --server=https://api.{{ domain }}:6443 --insecure-skip-tls-verify={{ insecure_skip_tls_verify }} && oc project {{ user }}-project'
+      workingDir: '${PROJECTS_ROOT}/camel-workshop'
+      env:
+        - name: MAVEN_OPTS
+          value: "-Xmx200m"
+  - id: debug app
+    exec:
+      component: tools
+      commandLine: >-
+        mvn  -Duser.home=${HOME} spring-boot:run -Drun.jvmArguments="-Xdebug
+        -Xrunjdwp:transport=dt_socket,server=y,suspend=y,address=8000"
+      workingDir: '${PROJECTS_ROOT}/camel-workshop'
+  - id: run app locally
+    exec:
+      component: tools
+      commandLine: 'mvn clean spring-boot:run'
+      workingDir: '${PROJECTS_ROOT}/camel-workshop'
+      env:
+        - name: MAVEN_OPTS
+          value: "-Xmx200m"
+  - id: deploy-to-openshift 
+    exec:
+      component: tools
+      commandLine: 'mvn clean oc:deploy -P openshift -Dspring.profiles.active=prod -Djkube.generator.from=default-route-openshift-image-registry.{{ route_subdomain }}/openshift/{{ fuse_base_image}}:{{ fuse_base_image_tag }} \n'
+      workingDir: '${PROJECTS_ROOT}/camel-workshop'
