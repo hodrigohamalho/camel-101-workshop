@@ -175,13 +175,14 @@ Do you see the message *"Order Workshop to explore Fuse on Spring Boot received"
 [time=5]
 == Rest Documentation
 
-The Open API Specification(aka Swagger) is being auto-generated. Open the browser to the `/camel/api-doc` endpoint.
+The Open API Specification(aka Swagger) is being auto-generated. Open the browser to the `/api-doc` endpoint.
 
 image::./images/lab03-api-doc.png[]
 
 {empty} +
 
-If you prefer to see it in a human-readable way, check through the swagger-UI interface with the `/webjars/swagger-ui/index.html?url=/camel/api-doc` endpoint.
+If you prefer to see it in a human-readable way, check through the swagger-UI interface with the `/q/swagger-ui` endpoint.
+Then change the default openapi url for `/api-doc`
 
 image::./images/lab03-swagger.png[]
 
@@ -321,7 +322,7 @@ Run the integration and invoke the REST endpoints using the swagger-ui interface
 
 The response should look like this:
 
-image::./images/lab03-orders-from-database01.png[]
+image::./images/lab03-orders-from-database01.jpg[]
 
 {empty} +
 
@@ -329,8 +330,6 @@ image::./images/lab03-orders-from-database01.png[]
 Are you seeing the Orders from the database now?
 
 {empty} +
-
-The file `src/main/resources/schema.sql` was created to populate the database during the startup. Open it and take a look.
 
 === Create a new Order (POST)
 
@@ -372,28 +371,40 @@ To make it all work, the following dependencies were added to the project's `pom
 [source,xml]
 ----
 <dependency>
-    <groupId>org.hsqldb</groupId>
-    <artifactId>hsqldb</artifactId>
+    <groupId>io.quarkus</groupId>
+    <artifactId>quarkus-jdbc-h2</artifactId>
     <scope>runtime</scope>
 </dependency>
 <dependency>
-    <groupId>org.apache.camel</groupId>
-    <artifactId>camel-sql-starter</artifactId>
+    <groupId>io.quarkus</groupId>
+    <artifactId>quarkus-jdbc-mysql</artifactId>
 </dependency>
 ----
 
 {empty} +
 
-For every different database you want to support, you need to add the equivalent driver dependency. For example, if you need to interact with MySQL, you must add:
+When testing or running in dev mode, Quarkus can provide you with a zero config database out of the box, a feature we refer to as Dev Services. Depending on your database type you may need Docker installed in order to use this feature.
 
-[source,xml]
-----
-<dependency>
-    <groupId>mysql</groupId>
-    <artifactId>mysql-connector-java</artifactId>
-    <scope>runtime</scope>
-</dependency>
-----
+If you want to use Dev Services then all you need to do is include the relevant extension for the type of database you want, e.g. jdbc-postgresql, jdbc-mysql, or both, etc. Don’t configure a database URL, username and password - Quarkus will provide the database and you can just start coding without worrying about config.
+
+Quarkus currently include these built-in database kinds:
+
+- DB2: db2
+
+- Derby: derby
+
+- H2: h2
+
+- MariaDB: mariadb
+
+- Microsoft SQL Server: mssql
+
+- MySQL: mysql
+
+- Oracle: oracle
+
+- PostgreSQL: postgresql, pgsql or pg
+
 
 {empty} +
 

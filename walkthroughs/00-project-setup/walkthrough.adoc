@@ -1,4 +1,4 @@
-:walkthrough: Setup CodeReady Workspaces with Fuse
+:walkthrough: Setup CodeReady Workspaces with Camel
 :codeready-url: {che-url}
 :openshift-url: {openshift-host}
 :next-lab-url: ../../../tutorial/fuse-workshop-doc-walkthroughs-01-hello-router/
@@ -8,13 +8,13 @@
 
 Learn how to set up your environment and tools available for this workshop.
 
-Welcome to the Fuse workshop! It's a pleasure to guide you on this hands-on experience.
+Welcome to the Camel & Data Streaming workshop! It's a pleasure to guide you on this hands-on experience.
 
-This workshop aims to offer you practical experience with Red Hat Fuse. It is not meant to be a complete training of Red Hat Fuse. For this purpose we have an amazing https://www.redhat.com/pt-br/services/training/jb421-red-hat-jboss-fuse-camel-development[official training], covering many aspects of Red Hat Fuse in depth.
+This workshop aims to offer you practical experience with Red Hat Camel (formerly called Red Hat Fuse) & Data Streaming with Red Hat QMQ Streams (aka Kafka). It is not meant to be a complete training of Red Hat Camel or Kafka. For this purpose we have an amazing https://www.redhat.com/pt-br/services/training/jb421-red-hat-jboss-fuse-camel-development[official training], covering many aspects of Red Hat Camel in depth.
 
-The main objective is to cover as many Fuse aspects during this workshop. We will be using a https://github.com/GuilhermeCamposo/fuse-workshop.git[project skeleton] during this lab.
+The main objective is to cover as many Camel and Kafka aspects during this workshop. We will be using a https://github.com/hodrigohamalho/camel-workshop.git [project skeleton] during this lab.
 
-This *fuse-workshop* project is a Red Hat Fuse (aka https://camel.apache.org[Apache Camel]) Spring Boot project, with some code already written for you. It will help you focus on what really matters rather than having you write lots of boilerplate code.
+This *camel-workshop* project is a Red Hat Camel (https://camel.apache.org[Apache Camel]) with (http://quarkus.io[Quarkus]) project, with some code already written for you. It will help you focus on what really matters rather than having you write lots of boilerplate code.
 
 [type=walkthroughResource,serviceName=codeready]
 .CodeReady Workspaces
@@ -29,9 +29,9 @@ This *fuse-workshop* project is a Red Hat Fuse (aka https://camel.apache.org[Apa
 * link:{openshift-url}[Console, window="_blank"]
 ****
 
-.Fuse
+.Camel
 ****
-* link:https://launch.openshift.io[Create new projects using Launcher, window="_blank"]
+* link:https://code.quarkus.io/?extension-search=origin:platform%20camel[Create new projects using Launcher, window="_blank"]
 ****
 
 == Requirements
@@ -57,7 +57,7 @@ It's an IDE on the cloud based on containers. You can also use a local developme
 
 {empty} +
 
-The *fuse-workshop* project is a Camel Spring Boot project, with some code already written for you. It will help you focus on what really matters rather than having you writing lots of boilerplate code.
+The *camel-workshop* project is a Camel Quarkus project, with some code already written for you. It will help you focus on what really matters rather than having you writing lots of boilerplate code.
 
 .Open link:{codeready-url}/dashboard[CodeReady Workspaces, window="_blank"]
 
@@ -84,7 +84,6 @@ image::images/2-workspace-created.png[Importing project, role="integr8ly-img-res
 
 Now that you successfully started your workspace, take some time exploring the project structure using the `left menu`.
 
-image::images/3-che-side-menu.png[Side Menu - Project Structure, role="integr8ly-img-responsive"]
 
 {empty} +
 
@@ -96,9 +95,11 @@ image::images/4-che-run-locally.png[Running Application, role="integr8ly-img-res
 
 {empty} +
 
-As this is a web application, we are going to explore it in future labs, CodeReady Workspaces will suggest to you to open a link. Click on `Open Link`.
+As this is a web application, we are going to explore it in future labs, CodeReady Workspaces will suggest to you to open a link. Click on  `yes` and then `Open Link`.
 
-image::images/5-open-web-app.png[Running Application, role="integr8ly-img-responsive"]
+image::images/5-open-web-app-1.png[Running Application, role="integr8ly-img-responsive"]
+
+image::images/5-open-web-app-2.png[Running Application, role="integr8ly-img-responsive"]
 
 {empty} +
 
@@ -120,6 +121,6 @@ Are you seeing a loop hello message in the logs?
 
 Congratulations, you finished the setup of your environment!
 
-In this lab, you learned how to set up a Fuse on Spring Boot project using CodeReady Workspaces.
+In this lab, you learned how to set up a Camel on Quarkus project using CodeReady Workspaces.
 
 You can now proceed to `Hello Router Lab`.

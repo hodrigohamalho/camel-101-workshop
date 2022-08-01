@@ -5,7 +5,7 @@
 
 = Lab 1 - Hello World Camel
 
-Write your first Red Hat Fuse integration route!
+Write your first Red Hat Camel integration route!
 
 Let's explore a simple scenario where we are going to use a timer component to generate Orders automatically.
 
@@ -31,8 +31,8 @@ Let's explore a simple scenario where we are going to use a timer component to g
 [time=2]
 == Timer component
 
-Using the *fuse-workshop* project, open the class `OrderGenerator.java`. You can use the project navigation to it, or use the short key `CTRL + P` or `CMD + P` and type `OrderGenerator`.
-If you are having trouble finding it, look in `src/main/java/com/redhat/workshop/fuse/routers/` folder.
+Using the *camel-workshop* project, open the class `OrderGenerator.java`. You can use the project navigation to it, or use the short key `CTRL + P` or `CMD + P` and type `OrderGenerator`.
+If you are having trouble finding it, look in `src/main/java/com/redhat/integration/routers/` folder.
 
 image::./images/lab01-openclass.png[]
 

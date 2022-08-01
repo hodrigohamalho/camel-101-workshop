@@ -75,6 +75,7 @@
       include_role:
         name: codeready
       when: not delete_workshop
+      tags: codeready
 
     - name: Provision AMQ Broker Operator
       include_role:
