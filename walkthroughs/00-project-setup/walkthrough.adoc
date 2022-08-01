@@ -14,7 +14,7 @@ This workshop aims to offer you practical experience with Red Hat Camel (formerl
 
 The main objective is to cover as many Camel and Kafka aspects during this workshop. We will be using a https://github.com/hodrigohamalho/camel-workshop.git[project skeleton] during this lab.
 
-This *camel-workshop* project is a Red Hat Camel (https://camel.apache.org[Apache Camel]) with (http://quarkus.io[Quarkus]) project, with some code already written for you. It will help you focus on what really matters rather than having you write lots of boilerplate code.
+This *camel-workshop* project is a Red Hat Camel (https://camel.apache.org[Apache Camel]) with (http://quarkus.io[Quarkus]) project (aka https://access.redhat.com/documentation/en-us/red_hat_integration/2022.q3[Camel Extensions for Quarkus]), with some code already written for you. It will help you focus on what really matters rather than having you writing  boilerplate code as declaring dependencies.
 
 [type=walkthroughResource,serviceName=codeready]
 .CodeReady Workspaces
@@ -39,14 +39,16 @@ This *camel-workshop* project is a Red Hat Camel (https://camel.apache.org[Apach
 === Knowledge Requirements
 
 We prepared this content in a way that anyone can execute the labs and get an understanding of what is happening and the desired outcomes.
-Although for a better and deeper experience, so previous knowledge is require:
+Although for a better and deeper experience thw following knowledge is desired:
 
-- Basic Java
+- Basic development skills in Java
 - Basic Maven
 
 === Tools Requirements
 
-- You won't need any specific tool installed in your workstation. We only require an updated web browser, preferably Chrome or Firefox.
+- Besides you can run most part of the labs in your local machine if you prefer, You won't need any specific tool installed in your workstation. We only require an updated web browser, preferably Chrome or Firefox.
+
+
 
 
 [time=5]
@@ -54,8 +56,6 @@ Although for a better and deeper experience, so previous knowledge is require:
 
 These walkthroughs use link:https://developers.redhat.com/products/codeready-workspaces/overview[CodeReady Workspaces, window="_blank"] (based on https://www.eclipse.org/che[Eclipse Che]).
 It's an IDE on the cloud based on containers. You can also use a local development environment if you'd prefer (i.e. https://code.visualstudio.com[Visual Studio Code], https://developers.redhat.com/products/codeready-studio/overview[Red Hat CodeReady Studio] (formerly known as JBoss Developer Studio), https://www.jetbrains.com/idea[IntelliJ IDEA], etc).
-
-{empty} +
 
 The *camel-workshop* project is a Camel Quarkus project, with some code already written for you. It will help you focus on what really matters rather than having you writing lots of boilerplate code.
 
