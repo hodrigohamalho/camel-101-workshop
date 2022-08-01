@@ -21,6 +21,9 @@
     fuse_base_image_repo: registry.redhat.io/fuse7
     module_fuse: true
     module_camel_k: false
+    # change if you want to deploy the spring boot version
+    branch: quarkus
+    #branch: springboot
   tasks:
     - name: Define Module
       when:
@@ -28,8 +31,8 @@
         - module_camel_k|bool
       set_fact:
         solution_explorer_walkthrough_locations:
-          - 'https://github.com/hodrigohamalho/camel-workshop'
-          - 'https://github.com/hodrigohamalho/camel-101-workshop'
+          - 'https://github.com/hodrigohamalho/camel-workshop#{{ branch }}'
+          - 'https://github.com/hodrigohamalho/camel-101-workshop#{{ branch }}'
 
     - name: Define Module
       when:
@@ -37,7 +40,7 @@
         - not module_camel_k
       set_fact:
         solution_explorer_walkthrough_locations:
-          - 'https://github.com/hodrigohamalho/camel-101-workshop#quarkus'
+          - 'https://github.com/hodrigohamalho/camel-101-workshop#{{ branch }}'
 
     - name: Define domain
       set_fact:
