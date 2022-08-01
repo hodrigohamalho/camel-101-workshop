@@ -12,7 +12,7 @@ Welcome to the Camel & Data Streaming workshop! It's a pleasure to guide you on 
 
 This workshop aims to offer you practical experience with Red Hat Camel (formerly called Red Hat Fuse) & Data Streaming with Red Hat QMQ Streams (aka Kafka). It is not meant to be a complete training of Red Hat Camel or Kafka. For this purpose we have an amazing https://www.redhat.com/pt-br/services/training/jb421-red-hat-jboss-fuse-camel-development[official training], covering many aspects of Red Hat Camel in depth.
 
-The main objective is to cover as many Camel and Kafka aspects during this workshop. We will be using a https://github.com/hodrigohamalho/camel-workshop.git [project skeleton] during this lab.
+The main objective is to cover as many Camel and Kafka aspects during this workshop. We will be using a https://github.com/hodrigohamalho/camel-workshop.git[project skeleton] during this lab.
 
 This *camel-workshop* project is a Red Hat Camel (https://camel.apache.org[Apache Camel]) with (http://quarkus.io[Quarkus]) project, with some code already written for you. It will help you focus on what really matters rather than having you write lots of boilerplate code.
 
