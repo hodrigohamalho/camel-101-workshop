@@ -8,11 +8,11 @@ toc::[]
 
 == Product versions
 
-* Fuse: 2.10
+* Fuse: 7.11 https://access.redhat.com/documentation/en-us/red_hat_fuse/7.11[ - Documentation]
 * Spring Boot: 2
 * Java: 11
-* AMQ Broker: 7.x
-* Codeready Workspaces: latest
+* AMQ Streams: 1.8 https://access.redhat.com/documentation/en-us/red_hat_amq/2021.q3[ - Documentation]
+* Openshift Dev Spaces: latest
 * [optional] Camel K: 1.4
 
 == Requirements
@@ -30,17 +30,16 @@ Take the above resource consumption as a base to calculate the amount of resourc
 
 [NOTE]
 ====
-This workshop is specifically tested with OCP 4.9. Older versions have API incompatibilities that will break the automation and newer versions still not possess some of the operators used in this workshop.
+This workshop is specifically tested with OCP 4.10. Older versions have API incompatibilities that will break the automation and newer versions still not possess some of the operators used in this workshop.
 ====
 
 === Resource Consumption per User
 
 image::./images/resources.png[Resource Consumption]
 
-=== CodeReady Workspaces
+=== Openshift Dev Spaces (old CodeReady Workspaces)
 
 You just need an updated browser, preferably Chrome or Firefox :)
-
 
 == Using the Ansible playbook
 
@@ -49,7 +48,7 @@ You just need an updated browser, preferably Chrome or Firefox :)
 [options="header"]
 |=======================
 | Parameter | Example Value                                      | Definition
-| token | sha256~vFanQbthlPKfsaldJT3bdLXIyEkd7ypO_XPygY1DNtQ | Access token for a user with cluster-admin privileges.
+| tkn | sha256~vFanQbthlPKfsaldJT3bdLXIyEkd7ypO_XPygY1DNtQ | Access token for a user with cluster-admin privileges.
 | server    | https://api.cluster-xyz.xyz.sandbox9999.opentlc.com:6443                             | The cluster's OpenShift API URL
 | num_users | 8                                                  | Number of users attending the workshop. Have in mind that the more users you have, more resources you are going to need from the cluster.
 | delete_workshop | false | Only use this parameter if you intend to delete the installation and preserve the cluster.
@@ -60,9 +59,9 @@ You just need an updated browser, preferably Chrome or Firefox :)
 - Replace the environment variable values:
 
 ----
-token=REPLACE_ME
-server=REPLACE_ME
-num_users=REPLACE_ME
+tkn=CHANGEME
+server=CHANGEME
+num_users=CHANGEME
 ----
 
 === Install the Workshop
@@ -70,13 +69,13 @@ num_users=REPLACE_ME
 ----
 cd workshop_camel-springboot/ansible
 
-ansible-playbook -e token=${token} -e server=${server} -e num_users=${num_users} playbook.yml
+ansible-playbook -e token=${tkn} -e server=${server} -e num_users=${num_users} playbook.yml
 ----
 
 === Delete the workshop:
 
 ----
-ansible-playbook -e token=${token} -e server=${server} -e num_users=${num_users} -e delete_workshop=true playbook.yml
+ansible-playbook -e token=${tkn} -e server=${server} -e num_users=${num_users} -e delete_workshop=true playbook.yml
 ----
 
 === Getting the user registration page
