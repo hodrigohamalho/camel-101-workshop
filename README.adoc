@@ -48,7 +48,7 @@ You just need an updated browser, preferably Chrome or Firefox :)
 [options="header"]
 |=======================
 | Parameter | Example Value                                      | Definition
-| token | sha256~vFanQbthlPKfsaldJT3bdLXIyEkd7ypO_XPygY1DNtQ | Access token for a user with cluster-admin privileges.
+| tkn | sha256~vFanQbthlPKfsaldJT3bdLXIyEkd7ypO_XPygY1DNtQ | Access token for a user with cluster-admin privileges.
 | server    | https://api.cluster-xyz.xyz.sandbox9999.opentlc.com:6443                             | The cluster's OpenShift API URL
 | num_users | 8                                                  | Number of users attending the workshop. Have in mind that the more users you have, more resources you are going to need from the cluster.
 | delete_workshop | false | Only use this parameter if you intend to delete the installation and preserve the cluster.
@@ -59,9 +59,9 @@ You just need an updated browser, preferably Chrome or Firefox :)
 - Replace the environment variable values:
 
 ----
-token=REPLACE_ME
-server=REPLACE_ME
-num_users=REPLACE_ME
+tkn=CHANGEME
+server=CHANGEME
+num_users=CHANGEME
 ----
 
 === Install the Workshop
@@ -69,13 +69,13 @@ num_users=REPLACE_ME
 ----
 cd workshop_camel-springboot/ansible
 
-ansible-playbook -e token=${token} -e server=${server} -e num_users=${num_users} playbook.yml
+ansible-playbook -e token=${tkn} -e server=${server} -e num_users=${num_users} playbook.yml
 ----
 
 === Delete the workshop:
 
 ----
-ansible-playbook -e token=${token} -e server=${server} -e num_users=${num_users} -e delete_workshop=true playbook.yml
+ansible-playbook -e token=${tkn} -e server=${server} -e num_users=${num_users} -e delete_workshop=true playbook.yml
 ----
 
 === Getting the user registration page
