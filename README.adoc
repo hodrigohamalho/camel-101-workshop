@@ -1,4 +1,4 @@
-= Camel Spring Boot Workshop
+= Camel Quarkus Boot Workshop
 :toc:
 :toc-placement!:
 
@@ -8,8 +8,8 @@ toc::[]
 
 == Product versions
 
-* Fuse: 7.11 https://access.redhat.com/documentation/en-us/red_hat_fuse/7.11[ - Documentation]
-* Spring Boot: 2
+* Camel 3: 7.11 https://access.redhat.com/documentation/en-us/red_hat_integration/2022.q3/html/developing_applications_with_camel_extensions_for_quarkus/index[ - Documentation]
+* Quarkus: 2
 * Java: 11
 * AMQ Streams: 1.8 https://access.redhat.com/documentation/en-us/red_hat_amq/2021.q3[ - Documentation]
 * Openshift Dev Spaces: latest
@@ -17,7 +17,7 @@ toc::[]
 
 == Requirements
 
-=== OpenShift 4.9
+=== OpenShift 4.10
 
 This workshops requires a OpenShift environment with users already defined, they must:
 

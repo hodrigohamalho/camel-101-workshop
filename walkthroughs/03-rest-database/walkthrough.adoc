@@ -60,7 +60,7 @@ rest("/orders")
 
 {empty} +
 
-Run the integration and access the preview endpoint as shown in your CodeReady Workspaces (append `/camel/orders` to it) terminal.
+Run the integration and access the preview endpoint as shown in your CodeReady Workspaces (append `/orders` to it) terminal.
 
 Every time you hit the HTTP endpoint the message *"getting all orders entries from database"* should appear in the log.
 It doesn't return anything yet because nothing was implemented to return to the caller.
@@ -77,7 +77,7 @@ image::./images/open-preview.png[]
 {empty} +
 
 [type=verification]
-Do you see the message *"Getting all order entries from database"* in the logs every time you hit the `/camel/orders` HTTP endpoint?
+Do you see the message *"Getting all order entries from database"* in the logs every time you hit the `/orders` HTTP endpoint?
 
 === Get order by ID (GET)
 
@@ -93,10 +93,10 @@ Observe how we declare the path parameter ID on the URL on this new route. Copy 
 
 {empty} +
 
-Run the integration again and access the page in the browser as before, except use the URI path `/camel/orders/1`.
+Run the integration again and access the page in the browser as before, except use the URI path `/orders/1`.
 
 [type=verification]
-Do you see the message *"Getting order with id 1 entry from database"* in the logs every time you hit the `/camel/orders/1` endpoint?
+Do you see the message *"Getting order with id 1 entry from database"* in the logs every time you hit the `/orders/1` endpoint?
 
 === Create a new order (POST)
 
@@ -170,7 +170,7 @@ image::./images/web-page-swaggerui.png[]
 {empty} +
 
 [type=verification]
-Do you see the message *"Order Workshop to explore Fuse on Spring Boot received"* in the logs every time you hit the `/camel/orders` HTTP (POST) endpoint?
+Do you see the message *"Order Workshop to explore Fuse on Spring Boot received"* in the logs every time you hit the `/orders` HTTP (POST) endpoint?
 
 [time=5]
 == Rest Documentation
@@ -221,20 +221,20 @@ Have you been able to access the interface from SwaggerUI? Do you see the update
 [time=5]
 == Boilerplate code
 
-In `RestSetup.java` we use the `restConfiguration()` method to specify everything about the REST server and swagger doc:
+In `RestRouter.java` we use the `restConfiguration()` method to specify everything about the REST server and swagger doc:
 
 [source,java]
 ----
 restConfiguration()
     .apiContextPath("/api-doc")
-    .apiProperty("api.title", "Greeting REST API")
+    .apiProperty("api.title", "Orders REST API")
     .apiProperty("api.version", "1.0")
     .apiProperty("cors", "true")
     .apiProperty("base.path", "camel/")
     .apiProperty("api.path", "/")
     .apiProperty("host", "")
+    .apiProperty("schemes", "https,http")
     .apiContextRouteId("doc-api")
-.component("servlet")
 .bindingMode(RestBindingMode.json);
 ----
 
@@ -244,28 +244,19 @@ Also, some dependencies are needed in `pom.xml`:
 
 [source,xml]
 ----
-<!-- Swagger UI -->
-<dependency>
-    <groupId>org.webjars</groupId>
-    <artifactId>swagger-ui</artifactId>
-    <version>3.13.0</version>
-</dependency>
-<!-- REST -->
-<dependency>
-    <groupId>org.springframework.boot</groupId>
-    <artifactId>spring-boot-starter-web</artifactId>
-    <exclusions>
-        <exclusion>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-tomcat</artifactId>
-        </exclusion>
-    </exclusions>
-</dependency>
-<!-- WEB SERVER -->
-<dependency>
-    <groupId>org.springframework.boot</groupId>
-    <artifactId>spring-boot-starter-undertow</artifactId>
-</dependency>
+    <dependency>
+	    <groupId>org.apache.camel.quarkus</groupId>
+	    <artifactId>camel-quarkus-openapi-java</artifactId>
+	</dependency>
+	<dependency>
+	    <groupId>org.apache.camel.quarkus</groupId>
+	    <artifactId>camel-quarkus-rest-openapi</artifactId>
+	</dependency>
+	<!-- Swagger UI -->
+	<dependency>
+      <groupId>io.quarkus</groupId>
+      <artifactId>quarkus-smallrye-openapi</artifactId>
+    </dependency>
 ----
 
 {empty} +
@@ -315,8 +306,8 @@ Replace the `get()` methods with the following code:
 
 Run the integration and invoke the REST endpoints using the swagger-ui interface:
 
-- `/camel/orders`
-- `/camel/orders/1`
+- `/orders`
+- `/orders/1`
 
 {empty} +
 
@@ -346,7 +337,7 @@ Now replace the `post()` method with the following code:
 
 {empty} +
 
-Run the integration and make a POST request to `/camel/orders` with the following body:
+Run the integration and make a POST request to `/orders` with the following body:
 
 [source,json]
 ----
