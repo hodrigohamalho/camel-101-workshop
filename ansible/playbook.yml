@@ -84,6 +84,14 @@
         - num_users|int > 0
         - not delete_workshop
 
+    - name: Provision AMQ Streams Operator
+      include_role:
+        name: amq-streams
+      with_sequence: start=1 end={{ num_users }}
+      when:
+        - num_users|int > 0
+        - not delete_workshop
+
     - name: Provision Fuse Console Operator
       with_sequence: start=1 end={{ num_users }}
       when:

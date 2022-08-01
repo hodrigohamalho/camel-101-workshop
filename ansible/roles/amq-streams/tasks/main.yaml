@@ -1,0 +1,23 @@
+- name: Define User Project Name
+  set_fact:
+    user_project: 'user{{ item }}-project'
+
+- name: Evaluate AMQ Streams Subscription
+  k8s:
+    state: present
+    resource_definition: "{{ lookup('template', 'amq_streams_subscription.yml.j2') }}"
+
+- name: Wait for AMQ Streams Operator to be Running
+  k8s_info:
+    api_version: v1
+    kind: Pod
+    namespace: openshift-operators
+    label_selectors:
+      - name = amq-streams-cluster-operator
+      - rht.comp = AMQ_Streams
+    field_selectors:
+      - status.phase=Running
+  register: r_amq_streams_operator_pod
+  retries: 120
+  delay: 10
+  until: r_amq_streams_operator_pod.resources | list | length == 1
