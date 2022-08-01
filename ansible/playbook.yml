@@ -28,8 +28,8 @@
         - module_camel_k|bool
       set_fact:
         solution_explorer_walkthrough_locations:
-          - 'https://github.com/GuilhermeCamposo/workshop_camel-springboot'
-          - 'https://github.com/GuilhermeCamposo/camelk-workshop-doc'
+          - 'https://github.com/hodrigohamalho/camel-workshop'
+          - 'https://github.com/hodrigohamalho/camel-101-workshop'
 
     - name: Define Module
       when:
@@ -37,7 +37,7 @@
         - not module_camel_k
       set_fact:
         solution_explorer_walkthrough_locations:
-          - 'https://github.com/GuilhermeCamposo/fuse-workshop-doc'
+          - 'https://github.com/hodrigohamalho/camel-101-workshop#quarkus'
 
     - name: Define domain
       set_fact:
@@ -80,6 +80,14 @@
     - name: Provision AMQ Broker Operator
       include_role:
         name: amq
+      with_sequence: start=1 end={{ num_users }}
+      when:
+        - num_users|int > 0
+        - not delete_workshop
+
+    - name: Provision AMQ Streams Operator
+      include_role:
+        name: amq-streams
       with_sequence: start=1 end={{ num_users }}
       when:
         - num_users|int > 0
