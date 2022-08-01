@@ -4,14 +4,9 @@
 :user-password: openshift
 :next-lab-url: ../../../tutorial/fuse-workshop-doc-walkthroughs-05-openshift/
 
-= Lab 4 - Messaging
+= Lab 5 - Messaging with AMQ Streams (Kafka - Strimzi)
 
-Learn how to create routes that use asynchronous communication using message brokers(Red Hat AMQ Broker).
-
-Asynchronous messaging helps to decouple applications.
-Messaging makes the messaging system responsible for transferring data from one application to another, so the apps can focus on what data they need to share but not how that data is processed.
-
-Let's create a RESTful endpoint that returns a quick response to the user, but do all the processing in the background. We are going to use the http://camel.apache.org/wiretap.html[wiretap] component to make a copy of the message in the Camel pipeline and post it in a JMS queue. After we recover from the queue and insert the order into the database, then notify the user by email.
+Continue with with the previous REST exercise, REST is known as a request/reply architecture, it means that it's a synchronous operation. But even with REST we can work with all background job asynchronous. So let's in this lab we are going to create a RESTful endpoint that returns a quick response to the user, but do all the processing in the background. We are going to use the http://camel.apache.org/wiretap.html[wiretap] component to make a copy of the message in the Camel pipeline and post it in a JMS queue. After we recover from the queue and insert the order into the database, then notify the user by email.
 
 image::./images/lab04-messaging-architecture.png[]
 
@@ -33,6 +28,21 @@ Contents covered during this lab
 ****
 * link:{openshift-url}[Console, window="_blank"]
 ****
+
+== Event Driven Architecture Introduction
+
+Event Driven Architecture Introduction
+
+In an Event Driven Architecture, an event notification is generated, the system captures what happened and waits to provide the response back.  The application that got the notification might either reply right away or wait till the status changes.
+
+Event Driven Architecture allows for more flexible, scalable, contextual, and responsive digital business systems. This is why this architecture style has been gaining popularity.
+
+The key rationale for leveraging Apache Kafka for an Event Driven system is the decoupling of microservices and the development of a Kafka pipeline to connect producers and consumers. Instead of checking for new data, you may just listen to a certain event and take action. Kafka provides a scalable hybrid approach that incorporates both Processing and Messaging.
+
+Another advantage of using Event Driven Architecture with Kafka is that, unlike messaging-oriented systems, events published in Kafka are not removed as soon as they are consumed. They are removed once a specific amount of time has passed.
+
+During their lifetime, they may be read by a variety of consumers, allowing them to respond to a variety of use cases.
+
 
 [time=5]
 == Async router
@@ -66,7 +76,7 @@ Run the application and test it by calling the POST async method accessing the S
 
 {empty} +
 
-image::./images/lab04-messaging-01.png[]
+image::./images/lab05-messaging-01.png[]
 
 {empty} +
 
@@ -89,7 +99,7 @@ from("direct:create-order")
 
 Run again and check the log to see if the new message *" processing order async "* appeared.
 
-image::./images/lab04-post-async.png[]
+image::./images/lab05-post-async.png[]
 
 {empty} +
 
@@ -115,7 +125,7 @@ Run the application and test it by calling the POST async method, by accessing t
 Check the logs to see the messages exchanged in the queue. As we are using an embedded broker to test our application without the need to deploy in any place, there isn't a web console.
 Don't worry about it for now. When we deploy it on OpenShift, we'll use AMQ console.
 
-image::./images/lab04-messaging-03.png[]
+image::./images/lab05-messaging-03.png[]
 
 {empty} +
 

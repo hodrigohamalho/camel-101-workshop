@@ -1,0 +1,164 @@
+:walkthrough: Messaging
+:codeready-url: {che-url}
+:openshift-url: {openshift-host}
+:user-password: openshift
+:next-lab-url: ../../../tutorial/fuse-workshop-doc-walkthroughs-05-openshift/
+
+= Lab 4 - Messaging with AMQ Broker (ActiveMQ Artemis)
+
+Learn how to create routes that use asynchronous communication using message brokers(Red Hat AMQ Broker).
+
+Asynchronous messaging helps to decouple applications.
+Messaging makes the messaging system responsible for transferring data from one application to another, so the apps can focus on what data they need to share but not how that data is processed.
+
+Let's create a RESTful endpoint that returns a quick response to the user, but do all the processing in the background. We are going to use the http://camel.apache.org/wiretap.html[wiretap] component to make a copy of the message in the Camel pipeline and post it in a JMS queue. After we recover from the queue and insert the order into the database, then notify the user by email.
+
+image::./images/lab04-messaging-architecture.png[]
+
+Contents covered during this lab
+
+* ActiveMQ component
+* Producing and Consuming messages to a queue
+* Use an embedded broker in the local environment
+
+[type=walkthroughResource,serviceName=codeready]
+.CodeReady Workspaces
+****
+* link:{codeready-url}[Console, window="_blank"]
+* link:https://developers.redhat.com/products/codeready-workspaces/overview[Want to know more about CodeReady Workspaces?, window="_blank"]
+****
+
+[type=walkthroughResource,serviceName=openshift]
+.OpenShift Console
+****
+* link:{openshift-url}[Console, window="_blank"]
+****
+
+[time=5]
+== Async router
+
+As we just did in the database session, let's start by uncommenting the `messaging` section in the `pom.xml`.
+
+In `RestRouter.java`, set a simple text message to return in the body.
+
+[source,java]
+----
+.post("/async").type(Order.class).description("Create a new order")
+    .route().routeId("create-order-async")
+    .log("Async Order received")
+    .setBody().simple("We received your request. As soon we process your request we will notify you by email.")
+    .endRest();
+----
+
+{empty} +
+
+Run the application and test it by calling the POST async method accessing the SwaggerUI page. Use the following body:
+
+[source,javascript]
+----
+{
+  "item": "Red Hat Integration",
+  "amount": 10,
+  "description": "Middleware Integration Portfolio",
+  "processed": true
+}
+----
+
+{empty} +
+
+image::./images/lab04-messaging-01.png[]
+
+{empty} +
+
+Now, let's *wiretap* the body to work with it asynchronously, while the Exchanged is still processed in the main route.
+
+[source,java]
+----
+.post("/async").type(Order.class).description("Create a new order")
+    .route().routeId("create-order-async")
+    .log("Order received")
+    .wireTap("direct:create-order")
+    .setBody().simple("We received your request. As soon we process your request we will notify you by email.")
+    .endRest();
+
+from("direct:create-order")
+    .log("processing order async");
+----
+
+{empty} +
+
+Run again and check the log to see if the new message *" processing order async "* appeared.
+
+image::./images/lab04-post-async.png[]
+
+{empty} +
+
+Now, instead of calling the SQL directly, let's send the order to a message broker:
+
+[source,java]
+----
+from("direct:create-order")
+    .log("sending ${body.item} to JMS queue")
+    .to("jms:queue:orders");
+----
+
+{empty} +
+
+Your code should looks like this:
+
+image::./images/messaging-code.png[]
+
+{empty} +
+
+Run the application and test it by calling the POST async method, by accessing the SwaggerUI page.
+
+Check the logs to see the messages exchanged in the queue. As we are using an embedded broker to test our application without the need to deploy in any place, there isn't a web console.
+Don't worry about it for now. When we deploy it on OpenShift, we'll use AMQ console.
+
+image::./images/lab04-messaging-03.png[]
+
+{empty} +
+
+[type=verification]
+Do you see the message  *"processing order async"* in the logs when you create a new Order?
+
+=== Consuming from Queues
+
+Everything should be working fine. To simulate the entire flow, let's create another route in the same RouteBuilder, to consume from the queue and persist this information in the database. This new route could be another system consuming this message.
+Remember that this kind of architecture aims to decouple applications from one another.
+
+[source,java]
+----
+// Consume from the message broker queue
+from("jms:queue:orders")
+    .log("received ${body.item} from JMS queue")
+    .to(this.insertOrder)
+    .to("mock:notify-by-email");
+----
+
+{empty} +
+
+Re-run the integration and look at the logs.
+
+[type=verification]
+Can you see the logs from the consumer route?
+
+{empty} +
+
+On the next section we are going to deploy the integration into OpenShift and we will be able to see all the messages passing through the AMQ via the AMQ Management Console.
+
+[time=1]
+== Summary
+
+Congratulations you finished the Messaging lab.
+
+We covered a lot of things during this lab. Here's a quick recap:
+
+* How to interact with AMQ Broker (Artemis) using the **Artemis** Component
+* How to run an **embedded Broker** in a local environment
+* Working **asynchronously** with the **wireTap** Enterprise Integration Pattern
+* Producing and Consuming messages
+
+{empty} +
+
+You can now proceed to `Openshift`.
