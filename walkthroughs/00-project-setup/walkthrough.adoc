@@ -48,9 +48,6 @@ Although for a better and deeper experience thw following knowledge is desired:
 
 - Besides you can run most part of the labs in your local machine if you prefer, You won't need any specific tool installed in your workstation. We only require an updated web browser, preferably Chrome or Firefox.
 
-
-
-
 [time=5]
 == Setup CodeReady Workspaces
 
@@ -59,16 +56,12 @@ It's an IDE on the cloud based on containers. You can also use a local developme
 
 The *camel-workshop* project is a Camel Quarkus project, with some code already written for you. It will help you focus on what really matters rather than having you writing lots of boilerplate code.
 
-.Open link:{codeready-url}/dashboard[CodeReady Workspaces, window="_blank"]
-
-{empty} +
+Open the IDE link:{codeready-url}/dashboard[CodeReady Workspaces, window="_blank"]
 
 Credentials:
 
 * Username: `{user-username}`
 * Password: `{user-password}`
-
-{empty} +
 
 On the opened page, click on the workspace as showed in the picture:
 
@@ -76,16 +69,13 @@ image::images/01-workspace.png[Che Workspace, role="integr8ly-img-responsive"]
 
 {empty} +
 
-When the setup is ready, you should see a screen like this:
+When the setup is ready (be patient it can take some minutes), you should see a screen like this:
 
 image::images/2-workspace-created.png[Importing project, role="integr8ly-img-responsive"]
 
 {empty} +
 
 Now that you successfully started your workspace, take some time exploring the project structure using the `left menu`.
-
-
-{empty} +
 
 === Running the project
 
