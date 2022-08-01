@@ -367,7 +367,7 @@ image::./images/lab05-s2i-01.png[]
 
 {empty} +
 
-Add the repository `https://github.com/GuilhermeCamposo/fuse-workshop.git` and `labs-complete` as the branch reference.
+Add the repository `https://github.com/hodrigohamalho/camel-workshop.git` and `labs-complete` as the branch reference.
 
 image::./images/lab05-s2i-02.png[]
 
