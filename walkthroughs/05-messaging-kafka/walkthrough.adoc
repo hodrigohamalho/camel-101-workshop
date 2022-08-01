@@ -6,6 +6,8 @@
 
 = Lab 5 - Messaging with AMQ Streams (Kafka - Strimzi)
 
+Learn how to create routes that use asynchronous communication in a event driven architecture using Kafka as the event broker (Red Hat AMQ Streams).
+
 Continue with with the previous REST exercise, REST is known as a request/reply architecture, it means that it's a synchronous operation. But even with REST we can work with all background job asynchronous. So let's in this lab we are going to create a RESTful endpoint that returns a quick response to the user, but do all the processing in the background. We are going to use the http://camel.apache.org/wiretap.html[wiretap] component to make a copy of the message in the Camel pipeline and post it in a JMS queue. After we recover from the queue and insert the order into the database, then notify the user by email.
 
 image::./images/lab04-messaging-architecture.png[]
