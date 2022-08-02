@@ -44,7 +44,7 @@ In `RestRouter.java`, set a simple text message to return in the body.
 [source,java]
 ----
 .post("/async")
-    .consumes("application/json").type(Order.class).description("Create a new order")
+    .consumes("application/json").type(Order.class).description("Create an order asynchronously")
     .route().routeId("create-order-async")
     .log("Async Order received")
     .setBody().simple("We received your request. As soon we process your request we will notify you by email.")
