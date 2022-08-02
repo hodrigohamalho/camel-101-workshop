@@ -55,7 +55,7 @@ You will use similar code in this lab.
 [time=5]
 === Separating different types of Orders
 
-We will continue to evolve the previous lab. We have five orders being generated automatically by the last lab. In each order generated the item description is different, alternating between *Kafka* and *Camel*.
+We will continue to evolve the previous lab. We have five orders being generated automatically by the last lab. In each order generated the item description is different, alternating between *ActiveMQ* and *Camel*.
 
 Let's separate each of these different books with content-based router pattern. But first, let's update the previous router to invoke the one that we will be working on this lab.
 
@@ -91,7 +91,7 @@ from("direct:book-to-file")
         .when(simple("${body.item} == 'Camel'"))
             .log("Processing a Camel book")
         .otherwise()
-            .log("Processing an Kafka book");
+            .log("Processing an ActiveMQ book");
 ----
 
 {empty} +
@@ -109,7 +109,7 @@ Run the integration:
 image::./images/02-camel-cbr-01.png[]
 
 [type=verification]
-Do you see both messages *Processing a Camel book* and *Processing an Kafka book* in the log?
+Do you see both messages *Processing a Camel book* and *Processing an ActiveMQ book* in the log?
 
 [time=5]
 == Interacting with Files
@@ -118,7 +118,7 @@ https://camel.apache.org/file.html[window="_blank"]
 
 Let's use a new component, *File*, to persist this order on the filesystem. *File* is powerful component that enables us to interact with the file system easily.
 
-To adjust the route to persist the Camel book in the directory `/tmp/fuse-workshop/camel` and the Kafka book in  `/tmp/fuse-workshop/kafka`
+To adjust the route to persist the Camel book in the directory `/tmp/fuse-workshop/camel` and the ActiveMQ book in  `/tmp/fuse-workshop/activemq`
 
 image::./images/lab02-filesystem.png[]
 
@@ -135,9 +135,9 @@ from("direct:book-to-file")
             .convertBodyTo(String.class)
             .to("file:/tmp/fuse-workshop/camel")
         .otherwise()
-            .log("Processing an kafka book")
+            .log("Processing an ActiveMQ book")
             .convertBodyTo(String.class)
-            .to("file:/tmp/fuse-workshop/kafka");
+            .to("file:/tmp/fuse-workshop/activemq");
 ----
 
 {empty} +
@@ -182,11 +182,11 @@ Camel:
 
 {empty} +
 
-Kafka:
+ActiveMQ:
 
 [source,java]
 ----
-.to("file:/tmp/fuse-workshop/kafka?fileName=kafka-${date:now:yyyy-MM-dd-HHmmssSSS}.txt");
+.to("file:/tmp/fuse-workshop/activemq?fileName=activemq-${date:now:yyyy-MM-dd-HHmmssSSS}.txt");
 ----
 
 {empty} +
@@ -205,7 +205,7 @@ https://camel.apache.org/data-format.html
 
 Now, let's take the last example and instead of storing everything in *.txt* format, let's transform the Java object in the Message body (`Order.java`).
 
-Let's transform the Camel type to JSON and the Kafka to XML.
+Let's transform the Camel type to JSON and the ActiveMQ to XML.
 
 image::./images/lab02-content-base-router.png[]
 
@@ -229,9 +229,9 @@ from("direct:book-to-file")
             .marshal().json()
             .to("file:/tmp/fuse-workshop/camel?fileName=camel-${date:now:yyyy-MM-dd-HHmmssSSS}.json")
         .otherwise()
-            .log("Processing an kafka book")
+            .log("Processing an activemq book")
             .marshal().jacksonxml()
-            .to("file:/tmp/fuse-workshop/kafka?fileName=kafka-${date:now:yyyy-MM-dd-HHmmssSSS}.xml");
+            .to("file:/tmp/fuse-workshop/activemq?fileName=activemq-${date:now:yyyy-MM-dd-HHmmssSSS}.xml");
 ----
 
 {empty} +
@@ -244,7 +244,7 @@ Do you see the files with the correct extensions? Is the content of each file wh
 [time=10]
 == Processor and Transformation
 
-Let's add some adrenaline to it! Let's change the `Order` attribute `processed` to `true` for Kafka books.
+Let's add some adrenaline to it! Let's change the `Order` attribute `processed` to `true` for ActiveMQ books.
 
 image::./images/lab02-content-base-router.png[]
 
@@ -270,7 +270,7 @@ image::./images/lab02-processor.png[]
 
 {empty} +
 
-In the route, add the process before the first transformation of Kafka books:
+In the route, add the process before the first transformation of ActiveMQ books:
 
 [source,java]
 ----
@@ -281,10 +281,10 @@ from("direct:book-to-file")
             .marshal().json()
             .to("file:/tmp/fuse-workshop/camel?fileName=camel-${date:now:yyyy-MM-dd-HHmmssSSS}.json")
         .otherwise()
-            .log("Processing an kafka book")
+            .log("Processing an activemq book")
             .process(new OrderProcessor()) // ADD THIS LINE
             .marshal().jacksonxml()
-            .to("file:/tmp/fuse-workshop/kafka?fileName=kafka-${date:now:yyyy-MM-dd-HHmmssSSS}.xml");
+            .to("file:/tmp/fuse-workshop/activemq?fileName=activemq-${date:now:yyyy-MM-dd-HHmmssSSS}.xml");
 ----
 
 {empty} +
