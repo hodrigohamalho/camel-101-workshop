@@ -1,5 +1,5 @@
 - hosts: localhost
-  name: Install Fuse Workshop
+  name: Install Camel Workshop
   vars:
     delete_workshop: false
     insecure_skip_tls_verify: true
