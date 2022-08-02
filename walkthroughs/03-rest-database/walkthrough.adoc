@@ -7,8 +7,9 @@
 
 Learn how to expose a REST endpoint and how to connect to databases using Camel.
 
-REST is key when we talk about integration.
-In this lab, we are going to explore some basic REST integrations with Red Hat Fuse (Camel) interacting with a SQL database.
+REST is key when we talk about integration, there are APIs REST for the entire internet enabling easy connection between systems.
+
+In this lab, we are going to explore some basic REST integrations with Camel interacting with a SQL database.
 
 image::./images/lab03-rest-diagram.png[]
 
@@ -160,9 +161,9 @@ image::./images/web-page-swaggerui.png[]
 [source,javascript]
 ----
 {
-    "item": "Red Hat Fuse Workshop",
+    "item": "Red Hat Camel Workshop",
     "amount": 2,
-    "description": "Workshop to explore Fuse on springboot",
+    "description": "Workshop to explore Camel",
     "processed": true
 }
 ----
