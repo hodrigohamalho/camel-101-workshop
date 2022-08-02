@@ -103,6 +103,8 @@ As this is a web application, we are going to explore it in future labs, CodeRea
 
 image::images/5-open-web-app-1.png[Running Application, role="integr8ly-img-responsive"]
 
+{empty} +
+
 image::images/5-open-web-app-2.png[Running Application, role="integr8ly-img-responsive"]
 
 {empty} +
