@@ -43,7 +43,8 @@ In `RestRouter.java`, set a simple text message to return in the body.
 
 [source,java]
 ----
-.post("/async").type(Order.class).description("Create a new order")
+.post("/async")
+    .consumes("application/json").type(Order.class).description("Create a new order")
     .route().routeId("create-order-async")
     .log("Async Order received")
     .setBody().simple("We received your request. As soon we process your request we will notify you by email.")
@@ -74,7 +75,8 @@ Now, let's *wiretap* the body to work with it asynchronously, while the Exchange
 
 [source,java]
 ----
-.post("/async").type(Order.class).description("Create a new order")
+.post("/async")
+    .consumes("application/json").type(Order.class).description("Create a new order")
     .route().routeId("create-order-async")
     .log("Order received")
     .wireTap("direct:create-order")
@@ -87,7 +89,7 @@ from("direct:create-order")
 
 {empty} +
 
-Run again and check the log to see if the new message *" processing order async "* appeared.
+Save, and check the log to see if the new message *" processing order async "* appeared.
 
 image::./images/lab04-post-async.png[]
 
@@ -110,7 +112,7 @@ image::./images/messaging-code.png[]
 
 {empty} +
 
-Run the application and test it by calling the POST async method, by accessing the SwaggerUI page.
+Save the file and test the changes by calling the POST async method, by accessing the SwaggerUI page.
 
 Check the logs to see the messages exchanged in the queue. As we are using an embedded broker to test our application without the need to deploy in any place, there isn't a web console.
 Don't worry about it for now. When we deploy it on OpenShift, we'll use AMQ console.
