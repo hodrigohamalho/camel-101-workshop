@@ -3,7 +3,7 @@
 :openshift-url: {openshift-host}
 :user-password: openshift
 
-= Lab 5 - Publish to OpenShift
+= Lab 6 - Publish to OpenShift
 
 Learn how to deploy integrations using the tools available for OpenShift.
 
@@ -15,7 +15,7 @@ There are several ways to deploy an application into OpenShift, the most common 
 
 {empty} +
 
-For this lab we will start with the binary deployment option (#2 above), uploading the binary directly from the IDE workspace to OpenShift.
+For this lab we will start with the binary deployment option, uploading the binary directly from the IDE workspace to OpenShift.
 For it to work we will need the `oc` client that is installed in the environment.
 
 In the last section you will see how to use S2I to deploy applications, a way to deploy application using git repositories.
@@ -81,7 +81,7 @@ Were you able to deploy Mysql?
 [time=5]
 == AMQ provisioning
 
-Let's provision an AMQ Broker on this step. On the *Developer* view, click on *Add* on the left side menu.
+It's only required to cover this topic if you did the Lab 4 (Messaging with AMQ Broker). Let's provision an AMQ Broker on this step. On the *Developer* view, click on *Add* on the left side menu.
 Select *Operator Backed* option. Filter by *AMQ Broker* and select the *AMQ Broker* tile:
 
 image::./images/07.png[]
