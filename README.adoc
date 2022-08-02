@@ -28,10 +28,7 @@ Have as many as you need for your activity.
 
 Take the above resource consumption as a base to calculate the amount of resource you will need for your workshop.
 
-[NOTE]
-====
-This workshop is specifically tested with OCP 4.10. Older versions have API incompatibilities that will break the automation and newer versions still not possess some of the operators used in this workshop.
-====
+NOTE: This workshop is specifically tested with OCP 4.10. Older versions have API incompatibilities that will break the automation and newer versions still not possess some of the operators used in this workshop.
 
 === Resource Consumption per User
 
