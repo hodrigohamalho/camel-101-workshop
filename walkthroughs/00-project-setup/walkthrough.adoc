@@ -63,9 +63,23 @@ Credentials:
 * Username: `{user-username}`
 * Password: `{user-password}`
 
+{empty} +
+
 On the opened page, click on the workspace as showed in the picture:
 
 image::images/01-workspace.png[Che Workspace, role="integr8ly-img-responsive"]
+
+{empty} +
+
+During the import some questions will appear in the right bottom corner, just confirm all questions.
+
+image::images/01-importing-workspace.png[Che Workspace, role="integr8ly-img-responsive"]
+
+{empty} +
+
+Confirm to Restart the workspace.
+
+image::images/01-restart-workspace.png[Che Workspace, role="integr8ly-img-responsive"]
 
 {empty} +
 
