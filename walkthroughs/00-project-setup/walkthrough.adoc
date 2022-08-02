@@ -95,7 +95,7 @@ Now that you successfully started your workspace, take some time exploring the p
 
 On the right menu, click on the cube icon. Under the tools menu, click on `run app locally`. You should see the application build starting and then application running.
 
-image::images/4-che-run-locally.png[Running Application, role="integr8ly-img-responsive"]
+image::images/4-run-app-locally.png[Running Application, role="integr8ly-img-responsive"]
 
 {empty} +
 
