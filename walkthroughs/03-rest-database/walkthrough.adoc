@@ -230,7 +230,7 @@ restConfiguration()
     .apiProperty("api.title", "Orders REST API")
     .apiProperty("api.version", "1.0")
     .apiProperty("cors", "true")
-    .apiProperty("base.path", "camel/")
+    .apiProperty("base.path", "/")
     .apiProperty("api.path", "/")
     .apiProperty("host", "")
     .apiProperty("schemes", "https,http")
@@ -266,7 +266,7 @@ Also, some dependencies are needed in `pom.xml`:
 
 Now we have the REST endpoints but it doesn't do anything until we tie it with some kind of back-end data store.
 Let's work on the interaction with the orders database to retrieve relevant order information.
-For this we will use the link:https://camel.apache.org/sql.html[camel-SQL, window="_blank"] component to do it.
+For this we will use the link:https://camel.apache.org/camel-quarkus/2.10.x/reference/extensions/sql.html[camel-SQL, window="_blank"] component to do it.
 
 Interacting with a database is a common need, so it's important to see how simple it is with Camel.
 
@@ -342,9 +342,9 @@ Run the integration and make a POST request to `/orders` with the following body
 [source,json]
 ----
 {
-    "item": "Red Hat Fuse Workshop",
+    "item": "Red Hat Camel & Event Streaming Workshop",
     "amount": 2,
-    "description": "Workshop to explore Fuse on springboot",
+    "description": "Workshop to explore Camel on Quarkus",
     "processed": true
 }
 ----

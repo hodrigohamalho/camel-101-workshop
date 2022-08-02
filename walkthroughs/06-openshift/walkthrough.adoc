@@ -98,7 +98,7 @@ On the configuration select *YAML view* and paste the following content:
 
 [source,yaml,subs="attributes+", id="amq-cr"]
 ----
-apiVersion: broker.amq.io/v2alpha5
+apiVersion: broker.amq.io/v1beta1
 kind: ActiveMQArtemis
 metadata:
   name: amq-broker
@@ -244,11 +244,11 @@ image::./images/24.png[]
 
 {empty} +
 
-The `oc:deploy` maven goal uses the k8s authentication configuration present in the user home.
+The `openshift` maven profile uses the k8s authentication configuration present in the user home.
 It also uses a binary deployment, meaning it builds your application binary locally and sends the resulting jar to OpenShift to "wrap" in a container image and deploy it.
 
-After the deployment completes, you will see that the application is using both the AMQ Broker and the MySQL database deployed on OpenShift.
-All production configuration data is in the `src/main/resources/application-prod.properties` file and we are activating this profile during the deployment in `src/main/jkube/deployment.yml` config file.
+After the deployment completes, you will see that the application is using both the AMQ Broker / Kafka and the MySQL database deployed on OpenShift.
+All production configuration data is in the `src/main/resources/application-prod.properties` file and Qiuarkus is activating this profile during the deployment.
 oc will inject this content inside of the final DeploymentConfig when deploying to OpenShift.
 
 
