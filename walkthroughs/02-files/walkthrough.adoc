@@ -133,11 +133,11 @@ from("direct:book-to-file")
         .when(simple("${body.item} == 'Camel'"))
             .log("Processing a camel book")
             .convertBodyTo(String.class)
-            .to("file:/tmp/fuse-workshop/camel")
+            .to("file:/tmp/camel-workshop/camel")
         .otherwise()
             .log("Processing an ActiveMQ book")
             .convertBodyTo(String.class)
-            .to("file:/tmp/fuse-workshop/activemq");
+            .to("file:/tmp/camel-workshop/activemq");
 ----
 
 {empty} +
@@ -145,7 +145,7 @@ from("direct:book-to-file")
 The line `.convertBodyTo(String.class)` is just invoking the `toString` method on the `Order` class. After that we are saving all files to the filesystem.
 
 Run the integration and check if the files were saved.
-To check if the file was save, we are going to list the files of the `/tmp/fuse-workshop` directory.
+To check if the file was save, we are going to list the files of the `/tmp/camel-workshop` directory.
 
 To open the terminal, click on `New terminal` on the right panel.
 
@@ -157,7 +157,7 @@ Then you can run the following command to list the files:
 
 [source,bash]
 ----
-ls /tmp/fuse-workshop/*
+ls /tmp/camel-workshop/*/*
 ----
 
 {empty} +
@@ -165,7 +165,7 @@ ls /tmp/fuse-workshop/*
 image::./images/lab03-listfiles.png[]
 
 [type=verification]
-Do you see the files inside the `/tmp/fuse-workshop` directories?
+Do you see the files inside the `/tmp/camel-workshop` directories?
 
 {empty} +
 
@@ -177,7 +177,7 @@ Camel:
 
 [source,java]
 ----
-.to("file:/tmp/fuse-workshop/camel?fileName=camel-${date:now:yyyy-MM-dd-HHmmssSSS}.txt")
+.to("file:/tmp/camel-workshop/camel?fileName=camel-${date:now:yyyy-MM-dd-HHmmssSSS}.txt")
 ----
 
 {empty} +
@@ -186,7 +186,7 @@ ActiveMQ:
 
 [source,java]
 ----
-.to("file:/tmp/fuse-workshop/activemq?fileName=activemq-${date:now:yyyy-MM-dd-HHmmssSSS}.txt");
+.to("file:/tmp/camel-workshop/activemq?fileName=activemq-${date:now:yyyy-MM-dd-HHmmssSSS}.txt");
 ----
 
 {empty} +
@@ -227,11 +227,11 @@ from("direct:book-to-file")
         .when(simple("${body.item} == 'Camel'"))
             .log("Processing a camel book")
             .marshal().json()
-            .to("file:/tmp/fuse-workshop/camel?fileName=camel-${date:now:yyyy-MM-dd-HHmmssSSS}.json")
+            .to("file:/tmp/camel-workshop/camel?fileName=camel-${date:now:yyyy-MM-dd-HHmmssSSS}.json")
         .otherwise()
             .log("Processing an activemq book")
             .marshal().jacksonxml()
-            .to("file:/tmp/fuse-workshop/activemq?fileName=activemq-${date:now:yyyy-MM-dd-HHmmssSSS}.xml");
+            .to("file:/tmp/camel-workshop/activemq?fileName=activemq-${date:now:yyyy-MM-dd-HHmmssSSS}.xml");
 ----
 
 {empty} +
@@ -259,7 +259,7 @@ Open the `OrderProcessor.java` file and implement the logic to change the attrib
 Order order = exchange.getIn().getBody(Order.class);
 order.setProcessed(true);
 System.out.println("attributed process changed");
-exchange.getOut().setBody(order);
+exchange.getMessage().setBody(order);
 ----
 
 {empty} +
@@ -279,12 +279,12 @@ from("direct:book-to-file")
         .when(simple("${body.item} == 'Camel'"))
             .log("Processing a camel book")
             .marshal().json()
-            .to("file:/tmp/fuse-workshop/camel?fileName=camel-${date:now:yyyy-MM-dd-HHmmssSSS}.json")
+            .to("file:/tmp/camel-workshop/camel?fileName=camel-${date:now:yyyy-MM-dd-HHmmssSSS}.json")
         .otherwise()
             .log("Processing an activemq book")
             .process(new OrderProcessor()) // ADD THIS LINE
             .marshal().jacksonxml()
-            .to("file:/tmp/fuse-workshop/activemq?fileName=activemq-${date:now:yyyy-MM-dd-HHmmssSSS}.xml");
+            .to("file:/tmp/camel-workshop/activemq?fileName=activemq-${date:now:yyyy-MM-dd-HHmmssSSS}.xml");
 ----
 
 {empty} +
@@ -295,9 +295,10 @@ image::./images/lab02-processor2.png[]
 
 Run the integration.
 
+image::./images/lab02-processor-result.png[]
+
 [type=verification]
 Do you see the last XML files generated with the process attribute is true?
-
 
 [time=1]
 == Summary
