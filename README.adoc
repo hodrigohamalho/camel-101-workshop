@@ -1,8 +1,20 @@
-= Camel Quarkus Boot Workshop
+= Camel Quarkus Workshop
 :toc:
 :toc-placement!:
 
-Ansibe automation to the deploy Red Hat Fuse Workshop.
+This workshop is based on six modules where you will be guided through the fundamentals of Apache Camel with Quarkus and how to deploy it in an Openshift environment.
+
+This is the high-level summary of the workshop:
+
+1) Understand the fundamental of Camel concepts. How to create a project using Camel Quarkus.
+2) Build and run Camel Integrations in your development environment.
+3) Interacting with Camel components and basic data transformation
+4) Creating REST APIs and using database
+5) Async REST APIs and how to interact with Message Broker (ActiveMQ Artemis)
+6) Interacting with Event Streaming platform (Apache Kafka)
+7) Deploy in Openshift
+
+image::./images/labs.png[Camel 101 Workshop Labs]
 
 toc::[]
 
@@ -64,7 +76,7 @@ num_users=CHANGEME
 === Install the Workshop
 
 ----
-cd workshop_camel-springboot/ansible
+cd camel-101-workshop/ansible
 
 ansible-playbook -e token=${tkn} -e server=${server} -e num_users=${num_users} playbook.yml
 ----
