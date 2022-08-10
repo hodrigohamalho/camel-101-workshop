@@ -6,13 +6,13 @@ This workshop is based on six modules where you will be guided through the funda
 
 This is the high-level summary of the workshop:
 
-1) Understand the fundamental of Camel concepts. How to create a project using Camel Quarkus.
-2) Build and run Camel Integrations in your development environment.
-3) Interacting with Camel components and basic data transformation
-4) Creating REST APIs and using database
-5) Async REST APIs and how to interact with Message Broker (ActiveMQ Artemis)
-6) Interacting with Event Streaming platform (Apache Kafka)
-7) Deploy in Openshift
+1. Understand the fundamental of Camel concepts. How to create a project using Camel Quarkus.
+2. Build and run Camel Integrations in your development environment.
+3. Interacting with Camel components and basic data transformation
+4. Creating REST APIs and using database
+5. Async REST APIs and how to interact with Message Broker (ActiveMQ Artemis)
+6. Interacting with Event Streaming platform (Apache Kafka)
+7. Deploy in Openshift
 
 image::./images/labs.png[Camel 101 Workshop Labs]
 
