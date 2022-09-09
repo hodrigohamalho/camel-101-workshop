@@ -6,6 +6,8 @@ toc::[]
 
 == Workshop overview
 
+https://docs.google.com/presentation/d/1hjZpZRXgqHfBDrh_ivrg2kD5rS1szNfH13tmOZN-F9g[Slide Deck - Red Hat Internal Only]
+
 This workshop is based on six modules where you will be guided through the fundamentals of Apache Camel with Quarkus and how to deploy it in an Openshift environment.
 
 This is the high-level summary of the workshop:
