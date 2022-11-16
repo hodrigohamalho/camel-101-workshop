@@ -238,6 +238,9 @@ from("direct:book-to-file")
 
 Run the integration and then list the directory again.
 
+image::./images/logs-json-xml.png[]
+
+
 [type=verification]
 Do you see the files with the correct extensions? Is the content of each file what you would expect?
 
