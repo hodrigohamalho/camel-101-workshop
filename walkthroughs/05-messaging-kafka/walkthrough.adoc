@@ -1,4 +1,4 @@
-:walkthrough: Red Hat OpenShift Streams for Apache Kafka
+:walkthrough: Lab 05 - Red Hat OpenShift Streams for Apache Kafka
 :codeready-url: {che-url}
 :openshift-url: {openshift-host}
 :user-password: openshift
@@ -11,9 +11,9 @@ Know and explore the Managed Kafka Offering from Red Hat, Red Hat Openshift Stre
 
 == Event Driven Architecture Introduction
 
-Event Driven Architecture Introduction
-
 In an Event Driven Architecture, an event notification is generated, the system captures what happened and waits to provide the response back.  The application that got the notification might either reply right away or wait till the status changes.
+
+image::./images/event-driven-architecture.png[]
 
 Event Driven Architecture allows for more flexible, scalable, contextual, and responsive digital business systems. This is why this architecture style has been gaining popularity.
 
@@ -28,7 +28,7 @@ During their lifetime, they may be read by a variety of consumers, allowing them
 
 Access the portal and log-in. In case you do not have registered yet, please do your registration.
 
-https://developers.redhat.com
+https://developers.redhat.com[https://developers.redhat.com^]
 
 image::./images/developer-portal.png[]
 
