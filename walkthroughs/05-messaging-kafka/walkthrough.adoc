@@ -3,12 +3,13 @@
 :openshift-url: {openshift-host}
 :user-password: openshift
 
-= Red Hat OpenShift Streams for Apache Kafka
+= Lab 05 - Red Hat OpenShift Streams for Apache Kafka
 
 Learn how to use asynchronous communication in a event driven architecture using Kafka as the event broker.
 
 Know and explore the Managed Kafka Offering from Red Hat, Red Hat Openshift Streams for Apache Kafka (RHOSAK).
 
+[time=2]
 == Event Driven Architecture Introduction
 
 In an Event Driven Architecture, an event notification is generated, the system captures what happened and waits to provide the response back.  The application that got the notification might either reply right away or wait till the status changes.
@@ -26,9 +27,7 @@ During their lifetime, they may be read by a variety of consumers, allowing them
 [time=5]
 == Access the Red Hat Developers portal
 
-Access the portal and log-in. In case you do not have registered yet, please do your registration.
-
-https://developers.redhat.com[https://developers.redhat.com^]
+Access the https://developers.redhat.com[Red Hat Developers^] and do the login. In case you do not have registered yet, please do your registration.
 
 image::./images/developer-portal.png[]
 
@@ -44,9 +43,7 @@ In case that that you need to do your registration, you should see a form like t
 
 image::./images/developer-portal-registration.png[]
 
-Access the Red Hat Streams for Apache Kafka Page, and click on `Create instance`.
-
-https://developers.redhat.com/products/red-hat-openshift-streams-for-apache-kafka/overview
+Access the https://developers.redhat.com/products/red-hat-openshift-streams-for-apache-kafka/overview[Red Hat Streams for Apache Kafka Page^], and click on `Create instance`.
 
 image::./images/stream-for-apache-kafka-page.png[]
 
@@ -60,7 +57,18 @@ image::./images/create-kafka-instance.png[]
 
 Access the Learning resources section from the left side menu.
 
+Please take a list of the resources available, there are labs about many technologies that surround the Kafka ecosystem, like:
+
+* API Designer - Easily create APIs specs through a rich interface
+* Service Registry - Manage your schemas
+* Create applications to access your Kafka instance (Node/Java)
+* Red Hat Openshift Connectors - Easily integrate third-party systems with the events in Kafka
+* Databases 
+
+As new technologies are added to the Red Hat Managed Services ecosystem, new learning resources are created in this space. Please let us know in case you miss some information so we can improve this session :-)
+
 image::./images/learning-resources.png[]
+
 
 {empty} +
 
@@ -70,7 +78,7 @@ image::./images/learning-resources-2.png[]
 
 {empty} +
 
-[time=25]
+[time=20]
 == Getting Started with Red Hat Openshift Streams for Apache Kafka
 
 Follow the lab instructions from the portal. You in the end of this lab you must conclude the following steps:
@@ -81,13 +89,26 @@ Follow the lab instructions from the portal. You in the end of this lab you must
 * Copied the ClientID and Client Secret from the Service Account
 * Set the Access Control for the Kafka instance
 
+[type=verification]
+Did you manage to achieve the outputs mentioned in the list above?
 
-[time=20]
+
+[time=15]
 == Getting started with Red Hat OpenShift Connectors
 
-Access the Learning resources section from the left side menu.
+What is Red Hat OpenShift Connectors?
 
-Select the `Getting started with Red Hat OpenShift Connectors` quickstart.
+Red Hat OpenShift Connectors are pre-built connectors for quick and reliable connectivity across data, services, and systems.
+
+image::./images/openshift-connectors-introduction.png[]
+
+* 60+ pre-built source and sink connectors
+* Delivered as fully managed service
+* User-friendly, code-free user interface
+* Tightly integrated with OpenShift Streams for Apache Kafka
+
+
+Back in the `Learning Resources` session, Select the `Getting started with Red Hat OpenShift Connectors` quickstart.
 
 image::./images/learning-resources-3.png[]
 
