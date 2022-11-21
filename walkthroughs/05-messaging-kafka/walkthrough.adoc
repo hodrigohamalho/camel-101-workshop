@@ -7,7 +7,7 @@
 
 On this lab we are going to provision a Kafka cluster using the Red Hat Openshift Streams for Apache Kafka (RHOSAK). 
 
-image::./images/lab-introduction.png[]
+image::./images/lab-introduction.jpg[]
 
 Once the cluster is provisioned, we are going to use Red Hat Openshift connectors to produce and consume events from the Kafka cluster.
 
