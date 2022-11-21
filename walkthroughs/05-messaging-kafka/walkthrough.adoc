@@ -5,9 +5,13 @@
 
 = Lab 05 - Red Hat OpenShift Streams for Apache Kafka
 
-Learn how to use asynchronous communication in a event driven architecture using Kafka as the event broker.
+On this lab we are going to provision a Kafka cluster using the Red Hat Openshift Streams for Apache Kafka (RHOSAK). 
 
-Know and explore the Managed Kafka Offering from Red Hat, Red Hat Openshift Streams for Apache Kafka (RHOSAK).
+image::./images/lab-introduction.png[]
+
+Once the cluster is provisioned, we are going to use Red Hat Openshift connectors to produce and consume events from the Kafka cluster.
+
+For last, adapt the `Camel quarkus` application to consume and produce JSON events to this cluster.
 
 [time=2]
 == Event Driven Architecture Introduction
@@ -146,25 +150,31 @@ image::./images/connectors/03-create-connector-3.png[]
 
 {empty} +
 
-Click on `Create a preview namespace`.
+Confirm it.
 
 image::./images/connectors/03-create-connector-4.png[]
 
 {empty} +
 
-Confirm it.
+Select the preview namespace.
 
 image::./images/connectors/03-create-connector-5.png[]
 
 {empty} +
 
-Select the preview namespace.
+Create the connector instance with the following information in the `Core` session:
+
+* Connector instance name: `kafka-producer-generator`
+* Client ID: <previous-created>
+* Client Secret: <previous-created>
+
+If you don't remember your Client ID and Client Secret, click in `Create service account` and create a new one.
 
 image::./images/connectors/03-create-connector-6.png[]
 
 {empty} +
 
-The topic `my-first-kafka-topic` was created in the previous lab.
+In the `connector specific` session, use the topic `my-first-kafka-topic` was created in the previous lab.
 
 Fill the form with the following instructions: 
 
