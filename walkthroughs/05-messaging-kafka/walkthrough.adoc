@@ -31,6 +31,10 @@ During their lifetime, they may be read by a variety of consumers, allowing them
 [time=5]
 == Provisioning a Kafka Cluster in Red Hat Cloud
 
+On the overall lab, now we are going to focus on provisioning the Kafka cluster to enable the applications produce and consume events. 
+
+image::./images/connectors/lab-introduction-kafka-instance.jpg[]
+
 Access the https://developers.redhat.com[Red Hat Developers^] and do the login. In case you do not have registered yet, please do your registration.
 
 image::./images/developer-portal.png[]
@@ -100,6 +104,10 @@ Did you manage to achieve the outputs mentioned in the list above?
 
 [time=15]
 == Getting started with Red Hat OpenShift Connectors
+
+On this step we are going to create a consumer and a producer to load some information into a Kafka topic. 
+
+image::./images/connectors/lab-introduction-coc.jpg[]
 
 What is Red Hat OpenShift Connectors?
 
@@ -288,3 +296,18 @@ image::./images/connectors/07-kafka-metrics.png[]
 {empty} +
 
 image::./images/connectors/07-kafka-metrics-1.png[]
+
+== Camel + Quarkus + Kafka
+
+Now, that we explore the Kafka ecosystem. We understood how to properly:
+
+* Create a Kafka cluster in cloud.redhat.com
+* Setup Access Control to this cluster.
+* Create topic
+* Create a consumer/producer using Red Hat Openshift Connectors
+* Look at Kafka dashboard metrics
+
+We are going to keep evolving the Camel Quarkus application that we have been working, to integrate with this Kafka Cluster.
+
+image::./images/connectors/lab-introduction-camel-quarkus.jpg[]
+
