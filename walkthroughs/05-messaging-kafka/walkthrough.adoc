@@ -29,7 +29,7 @@ Another advantage of using Event Driven Architecture with Kafka is that, unlike 
 During their lifetime, they may be read by a variety of consumers, allowing them to respond to a variety of use cases.
 
 [time=5]
-== Access the Red Hat Developers portal
+== Provisioning a Kafka Cluster in Red Hat Cloud
 
 Access the https://developers.redhat.com[Red Hat Developers^] and do the login. In case you do not have registered yet, please do your registration.
 
@@ -63,11 +63,11 @@ Access the Learning resources section from the left side menu.
 
 Please take a list of the resources available, there are labs about many technologies that surround the Kafka ecosystem, like:
 
-* API Designer - Easily create APIs specs through a rich interface
-* Service Registry - Manage your schemas
-* Create applications to access your Kafka instance (Node/Java)
-* Red Hat Openshift Connectors - Easily integrate third-party systems with the events in Kafka
-* Databases 
+* *API Designer* - Easily create APIs specs through a rich interface
+* *Service Registry* - Manage your schemas
+* *Red Hat Openshift Connectors* - Easily integrate third-party systems with the events in Kafka
+* *Create applications* using *Quarkus or Node* to access your Kafka instance
+* *Databases*
 
 As new technologies are added to the Red Hat Managed Services ecosystem, new learning resources are created in this space. Please let us know in case you miss some information so we can improve this session :-)
 
@@ -85,7 +85,8 @@ image::./images/learning-resources-2.png[]
 [time=20]
 == Getting Started with Red Hat Openshift Streams for Apache Kafka
 
-Follow the lab instructions from the portal. You in the end of this lab you must conclude the following steps:
+*Follow the lab instructions from the portal*. 
+At the end of this lab, you must conclude the following steps:
 
 * Create a Kafka instance
 * Copied the connection information
@@ -104,13 +105,14 @@ What is Red Hat OpenShift Connectors?
 
 Red Hat OpenShift Connectors are pre-built connectors for quick and reliable connectivity across data, services, and systems.
 
-image::./images/openshift-connectors-introduction.png[]
+image::./images/connectors/openshift-connectors-introduction.png[]
 
 * 60+ pre-built source and sink connectors
 * Delivered as fully managed service
 * User-friendly, code-free user interface
 * Tightly integrated with OpenShift Streams for Apache Kafka
 
+{empty} +
 
 Back in the `Learning Resources` session, Select the `Getting started with Red Hat OpenShift Connectors` quickstart.
 
@@ -167,6 +169,8 @@ Create the connector instance with the following information in the `Core` sessi
 * Connector instance name: `kafka-producer-generator`
 * Client ID: <previous-created>
 * Client Secret: <previous-created>
+
+{empty} +
 
 If you don't remember your Client ID and Client Secret, click in `Create service account` and create a new one.
 
