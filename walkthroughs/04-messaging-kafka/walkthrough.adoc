@@ -1,9 +1,9 @@
-:walkthrough: Lab 05 - Red Hat OpenShift Streams for Apache Kafka
+:walkthrough: Red Hat OpenShift Streams for Apache Kafka
 :codeready-url: {che-url}
 :openshift-url: {openshift-host}
 :user-password: openshift
 
-= Lab 05 - Red Hat OpenShift Streams for Apache Kafka
+= Lab 04 - Red Hat OpenShift Streams for Apache Kafka
 
 On this lab we are going to provision a Kafka cluster using the Red Hat Openshift Streams for Apache Kafka (RHOSAK). 
 
@@ -325,6 +325,10 @@ We are going to keep evolving the Camel Quarkus application that we have been wo
 
 image::./images/connectors/lab-introduction-camel-quarkus.jpg[]
 
+Into this Camel Quarkus application we are going to explore the following scenario:
+
+image::./images/camel-quarkus/kafka-message-flow.jpg[]
+
 To start, let's create a new topic in the Kafka cluster named `orders`.
 
 Leave all the options as default.
@@ -332,4 +336,60 @@ Leave all the options as default.
 image::./images/camel-quarkus/create-topic-1.png[]
 image::./images/camel-quarkus/create-topic-2.png[]
 image::./images/camel-quarkus/create-topic-3.png[]
+
+We need to set three important information in our application:
+
+. The credentials (Client ID and Client Secret)
+. The Broker Address (Connection URL)
+
+{empty} +
+
+In the `application.properties` file, set the following variables:
+
+[source,bash]
+----
+    id=YOUR-CLIENT-ID-HERE
+    secret=YOUR-SECRET-HERE
+    kafka.bootstrap.servers=YOUR-KAFKA-URL-HERE
+----
+
+Example:
+
+    id=8c1e5a6a-8918-4047-9d38-8857eaa9116x
+    secret=6kh8X9D1cl8xX7kXTuhEous0hDUxtBBS
+    kafka.bootstrap.servers=my-first-k-cdtpnqumftva-flujq-g.bf2.kafka.rhcloud.com:443
+
+Now, in the Order creation POST Request, let's use the `wiretap` component to make a copy of the request
+handling it asynchronous sending to the `orders` topic in the Kafka cluster.
+
+[source,java]
+----
+.post().type(Order.class)
+    .consumes("application/json").description("Create a new order")
+    .route().routeId("create order")
+    .log("Order received")
+    .wireTap("direct:send-to-kafka") // Work with a copy of that request
+    .endRest();
+
+from("direct:send-to-kafka")
+    .log("sending message to Kafka")
+    .removeHeaders("*") // clean headers to not send to kafka
+    .marshal().json() // transform to JSON
+    .to("kafka:orders"); // Send to KAFKA
+----
+
+Time to test! Let's run the application and see if it's sending message to the `orders` Topic in Kafka.
+
+[type=verification]
+Are you able to see the messages in the Kafka messages dashboard?
+
+As you are already able to produce messages into the topic `Orders`, let's see how to consume:
+
+[source,java]
+----
+from("kafka:orders") // Listen the topic orders
+    .unmarshal().json(JsonLibrary.Jackson) // Convert to JSON
+    .log("message ${body}")
+    .to(insertOrder); // Record into the database
+----
 

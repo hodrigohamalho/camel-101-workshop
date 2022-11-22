@@ -3,7 +3,7 @@
 :openshift-url: {openshift-host}
 :user-password: openshift
 
-= Lab 6 - Publish to OpenShift
+= Lab 5 - Publish to OpenShift
 
 Learn how to deploy integrations using the tools available for OpenShift.
 

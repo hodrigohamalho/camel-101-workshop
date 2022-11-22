@@ -1,10 +1,9 @@
-:walkthrough: Messaging
+:walkthrough: Messaging with ActiveMQ Artemis
 :codeready-url: {che-url}
 :openshift-url: {openshift-host}
 :user-password: openshift
-:next-lab-url: ../../../tutorial/fuse-workshop-doc-walkthroughs-05-openshift/
 
-= Lab 4 - Messaging with AMQ Broker (ActiveMQ Artemis)
+= Lab 6 - Messaging with AMQ Broker (ActiveMQ Artemis)
 
 Learn how to create routes that use asynchronous communication using message brokers(Red Hat AMQ Broker).
 

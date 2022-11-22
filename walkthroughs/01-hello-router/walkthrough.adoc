@@ -1,7 +1,6 @@
 :walkthrough: Hello World Camel
 :codeready-url: {che-url}
 :openshift-url: {openshift-host}
-:next-lab-url: ../../../tutorial/fuse-workshop-doc-walkthroughs-02-files/
 
 = Lab 1 - Hello World Camel
 

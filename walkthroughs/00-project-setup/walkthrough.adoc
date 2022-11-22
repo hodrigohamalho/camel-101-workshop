@@ -1,10 +1,9 @@
-:walkthrough: Setup CodeReady Workspaces with Camel
+:walkthrough: Workshop introduction - Environment Setup
 :codeready-url: {che-url}
 :openshift-url: {openshift-host}
-:next-lab-url: ../../../tutorial/fuse-workshop-doc-walkthroughs-01-hello-router/
 :user-password: openshift
 
-= Lab 0 - Workshop Introduction
+= Lab 0 - Workshop Introduction - Environment setup
 
 Learn how to set up your environment and tools available for this workshop.
 
