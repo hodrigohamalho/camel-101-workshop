@@ -199,6 +199,12 @@ image::./images/connectors/03-create-connector-7.png[]
 
 {empty} +
 
+Set the error handling to `Stop`
+
+image::./images/connectors/03-create-connector-7-1.png[]
+
+{empty} +
+
 Review the connector information.
 
 image::./images/connectors/03-create-connector-8.png[]
@@ -264,16 +270,22 @@ Fill the form with:
 
 * Consumes Format: `application/octet-stream`
 * Method: `POST`
-* URL: URL FROM webhook.site
+* URL: Paste the copied FROM `webhook.site`
 * Topic name: `my-first-kafka-topic`
 
 image::./images/connectors/05-create-sink-5.png[]
 
 {empty} +
 
-In the Error Handling option select: `log`.
+In the Error Handling option select: `stop`.
 
 image::./images/connectors/05-create-sink-6.png[]
+
+{empty} +
+
+Review the configuration
+
+image::./images/connectors/05-create-sink-6-1.png[]
 
 {empty} +
 
@@ -307,7 +319,17 @@ Now, that we explore the Kafka ecosystem. We understood how to properly:
 * Create a consumer/producer using Red Hat Openshift Connectors
 * Look at Kafka dashboard metrics
 
+{empty} +
+
 We are going to keep evolving the Camel Quarkus application that we have been working, to integrate with this Kafka Cluster.
 
 image::./images/connectors/lab-introduction-camel-quarkus.jpg[]
+
+To start, let's create a new topic in the Kafka cluster named `orders`.
+
+Leave all the options as default.
+
+image::./images/camel-quarkus/create-topic-1.png[]
+image::./images/camel-quarkus/create-topic-2.png[]
+image::./images/camel-quarkus/create-topic-3.png[]
 
