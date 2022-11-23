@@ -395,7 +395,7 @@ As you are already able to produce messages into the topic `Orders`, let's see h
 from("kafka:orders") // Listen the topic orders
     .unmarshal().json(JsonLibrary.Jackson) // Convert to JSON
     .log("order from Kafka ${body}");
-    
+    .to(insertOrder); // Insert into the Database
 ----
 
 Now you should see the messages being consumed by Kafka looking into the logs.
