@@ -327,7 +327,7 @@ image::./images/connectors/lab-introduction-camel-quarkus.jpg[]
 
 Into this Camel Quarkus application we are going to explore the following scenario:
 
-image::./images/camel-quarkus/kafka-message-flow.jpg[]
+image::./images/camel-quarkus/kafka-message-flow.png[]
 
 To start, let's create a new topic in the Kafka cluster named `orders`.
 
@@ -348,16 +348,19 @@ In the `application.properties` file, set the following variables:
 
 [source,bash]
 ----
-    id=YOUR-CLIENT-ID-HERE
-    secret=YOUR-SECRET-HERE
-    kafka.bootstrap.servers=YOUR-KAFKA-URL-HERE
+id=YOUR-CLIENT-ID-HERE
+secret=YOUR-SECRET-HERE
+kafka.bootstrap.servers=YOUR-KAFKA-URL-HERE
 ----
 
 Example:
 
-    id=8c1e5a6a-8918-4047-9d38-8857eaa9116x
-    secret=6kh8X9D1cl8xX7kXTuhEous0hDUxtBBS
-    kafka.bootstrap.servers=my-first-k-cdtpnqumftva-flujq-g.bf2.kafka.rhcloud.com:443
+[source,bash]
+----
+id=8c1e5a6a-8918-4047-9d38-8857eaa9116x
+secret=6kh8X9D1cl8xX7kXTuhEous0hDUxtBBS
+kafka.bootstrap.servers=my-first-k-cdtpnqumftva-flujq-g.bf2.kafka.rhcloud.com:443
+----
 
 Now, in the Order creation POST Request, let's use the `wiretap` component to make a copy of the request
 handling it asynchronous sending to the `orders` topic in the Kafka cluster.
