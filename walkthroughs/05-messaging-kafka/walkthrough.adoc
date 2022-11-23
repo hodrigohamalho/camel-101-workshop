@@ -365,21 +365,74 @@ kafka.bootstrap.servers=my-first-k-cdtpnqumftva-flujq-g.bf2.kafka.rhcloud.com:44
 Now, in the Order creation POST Request, let's use the `wiretap` component to make a copy of the request
 handling it asynchronous sending to the `orders` topic in the Kafka cluster.
 
+Let's create a POST `/async` REST endpoint to create an order asynchronously.
+
+In `RestRouter.java`, set a simple text message to return in the body.
+
 [source,java]
 ----
-.post().type(Order.class)
-    .consumes("application/json").description("Create a new order")
-    .route().routeId("create order")
+.post("/async")
+    .consumes("application/json").type(Order.class).description("Create an order asynchronously")
+    .route().routeId("create-order-async")
+    .log("Async Order received")
+    .setBody().simple("We received your request. As soon we process your request we will notify you by email.")
+    .endRest();
+----
+
+{empty} +
+
+Run the application and test it by calling the POST async method accessing the SwaggerUI page. Use the following body:
+
+[source,javascript]
+----
+{
+  "item": "Red Hat Integration",
+  "amount": 10,
+  "description": "Middleware Integration Portfolio",
+  "processed": true
+}
+----
+
+{empty} +
+
+image::./images/lab04-messaging-01.png[]
+
+{empty} +
+
+Now, let's *wiretap* the body to work with it asynchronously, while the Exchanged is still processed in the main route.
+
+[source,java]
+----
+.post("/async")
+    .consumes("application/json").type(Order.class).description("Create a new order")
+    .route().routeId("create-order-async")
     .log("Order received")
-    .wireTap("direct:send-to-kafka") // Work with a copy of that request
+    .wireTap("direct:create-order")
+    .setBody().simple("We received your request. As soon we process your request we will notify you by email.")
     .endRest();
 
-from("direct:send-to-kafka")
-    .log("sending message to Kafka")
-    .removeHeaders("*") // clean headers to not send to kafka
-    .marshal().json() // transform to JSON
-    .to("kafka:orders"); // Send to KAFKA
+from("direct:create-order")
+    .log("processing order async");
 ----
+
+{empty} +
+
+Save, and check the log to see if the new message *" processing order async "* appeared.
+
+image::./images/lab04-post-async.png[]
+
+{empty} +
+
+Now, instead of calling the SQL directly, let's send the order to the Kafka Broker:
+
+[source,java]
+----
+from("direct:create-order")
+    .log("sending ${body.item} to Kafka")
+    .to("kafka:orders");
+----
+
+{empty} +
 
 Time to test! Let's run the application and see if it's sending message to the `orders` Topic in Kafka.
 
@@ -394,7 +447,7 @@ As you are already able to produce messages into the topic `Orders`, let's see h
 ----
 from("kafka:orders") // Listen the topic orders
     .unmarshal().json(JsonLibrary.Jackson) // Convert to JSON
-    .log("order from Kafka ${body}");
+    .log("order from Kafka ${body}")
     .to(insertOrder); // Insert into the Database
 ----
 

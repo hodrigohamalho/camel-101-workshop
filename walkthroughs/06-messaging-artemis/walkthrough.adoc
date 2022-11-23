@@ -181,8 +181,6 @@ Were you able to deploy the new Queue?
 [time=5]
 == Async router
 
-As we just did in the database session, let's start by uncommenting the `messaging` section in the `pom.xml`.
-
 In `RestRouter.java`, set a simple text message to return in the body.
 
 [source,java]
