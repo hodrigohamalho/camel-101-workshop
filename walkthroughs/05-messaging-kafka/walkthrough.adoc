@@ -362,9 +362,6 @@ secret=6kh8X9D1cl8xX7kXTuhEous0hDUxtBBS
 kafka.bootstrap.servers=my-first-k-cdtpnqumftva-flujq-g.bf2.kafka.rhcloud.com:443
 ----
 
-Now, in the Order creation POST Request, let's use the `wiretap` component to make a copy of the request
-handling it asynchronous sending to the `orders` topic in the Kafka cluster.
-
 Let's create a POST `/async` REST endpoint to create an order asynchronously.
 
 In `RestRouter.java`, set a simple text message to return in the body.
