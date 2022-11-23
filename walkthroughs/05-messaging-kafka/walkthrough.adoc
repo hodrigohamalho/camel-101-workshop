@@ -3,7 +3,7 @@
 :openshift-url: {openshift-host}
 :user-password: openshift
 
-= Lab 04 - Red Hat OpenShift Streams for Apache Kafka
+= Lab 5 - Red Hat OpenShift Streams for Apache Kafka
 
 On this lab we are going to provision a Kafka cluster using the Red Hat Openshift Streams for Apache Kafka (RHOSAK). 
 
@@ -379,6 +379,9 @@ from("direct:send-to-kafka")
 ----
 
 Time to test! Let's run the application and see if it's sending message to the `orders` Topic in Kafka.
+
+Open the Swagger UI of your camel-quarkus application and trigger the `/orders POST` method to create a new order. 
+
 
 [type=verification]
 Are you able to see the messages in the Kafka messages dashboard?

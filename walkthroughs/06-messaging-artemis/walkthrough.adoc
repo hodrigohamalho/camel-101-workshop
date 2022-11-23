@@ -33,6 +33,151 @@ Contents covered during this lab
 * link:{openshift-url}[Console, window="_blank"]
 ****
 
+Before jump into the code, let's prepare the Openshift environment installing the AMQ Broker (ActiveMQ Artemis).
+
+[time=5]
+== AMQ provisioning
+
+It's only required to cover this topic if you did the Lab 4 (Messaging with AMQ Broker). Let's provision an AMQ Broker on this step. On the *Developer* view, click on *Add* on the left side menu.
+Select *Operator Backed* option. Filter by *AMQ Broker* and select the *AMQ Broker* tile:
+
+image::./images/07.png[]
+
+{empty} +
+
+Click on *Create*:
+
+image::./images/08.png[]
+
+{empty} +
+
+On the configuration select *YAML view* and paste the following content:
+
+[source,yaml,subs="attributes+", id="amq-cr"]
+----
+apiVersion: broker.amq.io/v1beta1
+kind: ActiveMQArtemis
+metadata:
+  name: amq-broker
+  application: amq-broker
+  namespace: {user-username}-project
+spec:
+  acceptors:
+    - enabledProtocols: amqp
+      name: amqp
+      port: 5672
+    - enabledProtocols: core
+      name: core
+      port: 61616
+  addressSettings: {}
+  adminPassword: redhat
+  adminUser: redhat
+  console:
+    expose: true
+  deploymentPlan:
+    size: 1
+    podSecurity: {}
+    resources: {}
+    readinessProbe: {}
+    messageMigration: false
+    extraMounts: {}
+    managementRBACEnabled: true
+    livenessProbe: {}
+    journalType: nio
+    image: placeholder
+    storage: {}
+  upgrades:
+    enabled: false
+    minor: false
+----
+
+{empty} +
+
+image::./images/09.png[]
+
+{empty} +
+
+If everything worked fine, you should see a screen like this:
+
+image::./images/10.png[]
+
+{empty} +
+
+Now, let's open the Management Console of the AMQ Broker.
+On the left panel, click *Search*. On the resources dropbox, select `Route`:
+
+image::./images/11.png[]
+
+{empty} +
+
+Click on the Route URL:
+
+image::./images/12.png[]
+
+{empty} +
+
+Click on *Management Console*:
+
+image::./images/13.png[]
+
+{empty} +
+
+Enter the following credentials:
+
+* Username: `redhat`
+* Password: `redhat`
+
+{empty} +
+
+image::./images/14.png[]
+
+{empty} +
+
+This is AMQ Console main page. Click on the Queues tab.
+
+image::./images/15.png[]
+
+{empty} +
+
+You may use this page to monitor the queues statistics.
+
+image::./images/16.png[]
+
+{empty} +
+
+[type=verification]
+Were you able to deploy AMQ?
+
+{empty} +
+
+As you can see the Address we need is not created. Follow theses steps to create it.
+On the left panel, click *+Add* then *Operator Backed*:
+
+image::./images/17.png[]
+
+{empty} +
+
+Click *Create*:
+
+image::./images/18.png[]
+
+{empty} +
+
+Set the *Queue Name* and *Address Name* as `orders`. Leave the *Routing Type* as `anycast`:
+
+image::./images/20.png[]
+
+{empty} +
+
+Now you will be able to visualize the queue using the web console:
+
+image::./images/21.png[]
+
+{empty} +
+
+[type=verification]
+Were you able to deploy the new Queue?
+
 [time=5]
 == Async router
 
