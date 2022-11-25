@@ -1,7 +1,6 @@
 :walkthrough: Integration with Files
 :codeready-url: {che-url}
 :openshift-url: {openshift-host}
-:next-lab-url: ../../../tutorial/fuse-workshop-doc-walkthroughs-03-rest-database/
 
 = Lab 2 - Integration with Files
 
@@ -237,6 +236,9 @@ from("direct:book-to-file")
 {empty} +
 
 Run the integration and then list the directory again.
+
+image::./images/logs-json-xml.png[]
+
 
 [type=verification]
 Do you see the files with the correct extensions? Is the content of each file what you would expect?

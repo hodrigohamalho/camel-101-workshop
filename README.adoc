@@ -67,6 +67,11 @@ You just need an updated browser, preferably Chrome or Firefox :)
 | delete_workshop | false | Only use this parameter if you intend to delete the installation and preserve the cluster.
 |=======================
 
+tkn=sha256~UNFpoNDl1kPJ-nEhUzt-hljRpCBndpk66t1UycKj4Z4
+server=https://api.cluster-96npr.96npr.sandbox1420.opentlc.com:6443
+num_users=1
+
+
 === Running the playbook
 
 - Replace the environment variable values:
